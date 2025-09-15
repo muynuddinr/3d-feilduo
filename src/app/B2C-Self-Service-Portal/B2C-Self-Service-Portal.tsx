@@ -1,8 +1,7 @@
 // pages/b2c-self-service-portal.js
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react'; // Added useRef to the import
 import Head from 'next/head';
-
 export default function B2CSelfServicePortal() {
   const [activeFaq, setActiveFaq] = useState(null);
   const [hoveredFeature, setHoveredFeature] = useState(null);
@@ -13,16 +12,13 @@ export default function B2CSelfServicePortal() {
   });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef(null);
-
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -52,22 +48,18 @@ export default function B2CSelfServicePortal() {
       },
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
     };
   }, []);
-
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
-
   const faqs = [
     {
       question: "What comprehensive features does the self-service portal offer?",
@@ -90,7 +82,6 @@ export default function B2CSelfServicePortal() {
       answer: "Our communication system enables seamless messaging between customers and service teams with real-time notifications, file sharing capabilities, and automated escalation workflows. Customers can track conversations, receive updates on service requests, and connect with the right support personnel based on issue complexity and priority."
     }
   ];
-
   const features = [
     {
       title: "Intelligent Scheduling",
@@ -123,7 +114,6 @@ export default function B2CSelfServicePortal() {
       icon: "💬"
     }
   ];
-
   const benefits = [
     {
       title: "Reduce Support Volume",
@@ -141,20 +131,17 @@ export default function B2CSelfServicePortal() {
       icon: "📈"
     }
   ];
-
   const stats = [
     { value: "24/7", label: "Always Available", suffix: "" },
     { value: "100", label: "Secure & Encrypted", suffix: "%" },
     { value: "85", label: "Customer Satisfaction", suffix: "%" }
   ];
-
   return (
     <>
       <Head>
         <title>Customer Self-Service Portal | Fielduo</title>
         <meta name="description" content="Streamline your customer experience with 24/7 access to scheduling, account management, and self-help resources" />
       </Head>
-
       <div className="min-h-screen bg-black text-white">
         {/* Mouse Follower Effect */}
         <div 
@@ -168,7 +155,6 @@ export default function B2CSelfServicePortal() {
             opacity: 0.5
           }}
         />
-
         {/* Hero Section */}
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 z-0"></div>
@@ -236,7 +222,6 @@ export default function B2CSelfServicePortal() {
             </div>
           </div>
         </div>
-
         {/* Comprehensive Self-Service Solutions Section */}
         <div className="py-20 bg-gradient-to-b from-black to-gray-900">
           <div className="container mx-auto px-4">
@@ -271,7 +256,6 @@ export default function B2CSelfServicePortal() {
             </div>
           </div>
         </div>
-
         {/* Transform Your Customer Experience Section */}
         <div className="py-20 bg-gradient-to-b from-gray-900 to-black">
           <div className="container mx-auto px-4">
@@ -304,7 +288,6 @@ export default function B2CSelfServicePortal() {
             </div>
           </div>
         </div>
-
         {/* Ready to Get Started Section */}
         <div className="py-20 bg-gradient-to-b from-black to-gray-900">
           <div className="container mx-auto px-4 text-center">
@@ -317,7 +300,6 @@ export default function B2CSelfServicePortal() {
             </button>
           </div>
         </div>
-
         {/* FAQ Section */}
         <div className="py-20 bg-black">
           <div className="container mx-auto px-4">
@@ -368,7 +350,6 @@ export default function B2CSelfServicePortal() {
             </div>
           </div>
         </div>
-
         {/* Final CTA Section */}
         <div className="bg-gradient-to-r from-blue-900/30 via-purple-900/30 to-pink-900/30 py-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
@@ -388,7 +369,6 @@ export default function B2CSelfServicePortal() {
           </div>
         </div>
       </div>
-
       <style jsx global>{`
         @keyframes float {
           0% { transform: translateY(0px) rotate(0deg); }
